@@ -26,11 +26,13 @@ function processNextNode(section, walker) {
   }
 }
 
+function isNodeOfInterest(node) {
+	return node.parentElement.tagName == 'P' ||
+	       node.parentElement.tagName == 'A';
+}
+
 function processTree(section, root) {
-  var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, 
-  	{
-  		acceptNode: function(node) { return node.parentElement.tagName == 'P'; } 
-  	}, false);
+  var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: isNodeOfInterest }, false);
   processNextNode(section, walker);
 }
 
