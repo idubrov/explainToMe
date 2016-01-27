@@ -45,7 +45,13 @@ function trieBuildSuffixes(root, node) {
 }
 
 function isWordTerminator(c) {
-	return c == ' ' || c == ',' || c == '/' || c == ';' || c == ':';
+	return c == ' ' ||
+				 c == ',' ||
+				 c == '/' ||
+				 c == ';' ||
+				 c == ':' ||
+				 c == '(' ||
+				 c == ')';
 }
 
 // Aho-Corasick search
