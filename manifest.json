@@ -7,13 +7,13 @@
   "version": "0.1",
 
   "background": {
-    "scripts": ["dictionary.js"],
+    "scripts": ["src/dictionary.js"],
     "persistent": false
   },
   "content_scripts": [
     {
       "matches": ["https://www.reddit.com/r/*"],
-      "js": ["explainToMe.js"]
+      "js": ["src/explainToMe.js"]
     }
   ],
   "incognito": "not_allowed",
