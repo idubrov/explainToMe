@@ -59,7 +59,7 @@ function isWordTerminator(c) {
 
 // Aho-Corasick search
 function decronymizeText(trie, text) {
-	var pieces = [];
+	var result = [];
 	var start = 0;
 	var current = trie;
 	for (var i = 0, len = text.length; i < len; i++) {
@@ -75,16 +75,20 @@ function decronymizeText(trie, text) {
     if (!!current.title && (i + 1 >= len || isWordTerminator(text[i + 1]))) {
     	var wordStart = i - current.length + 1;
     	if (start < wordStart) {
-    		pieces.push(text.substring(start, wordStart));
+    		result.push(text.substring(start, wordStart));
     	}
-    	pieces.push({text: text.substring(wordStart, i + 1), title: current.title});
+    	result.push({text: text.substring(wordStart, i + 1), title: current.title});
     	start = i + 1;
 
     	// Reset, we don't allow overlapped words
     	current = trie;
     }
 	}
-	return start == 0 ? null : { pieces: pieces, tail: text.substring(start) };
+	if (start == 0) {
+		return null;
+	}
+	result.push(text.substring(start));
+	return result;
 }
 
 // Loading dictionary from the decronym.xyz

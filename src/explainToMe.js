@@ -1,6 +1,13 @@
 function wrapWithAbbr(node, response) {
-	response.pieces.forEach(function(item) {
+	var last = response[response.length - 1];
+	var lastIsString = (typeof last === "string");
+	var end = response.length;
+	if (lastIsString) {
+		end--; // Reuse existing element in this case
+	}
+	for (var i = 0; i < end; i++) {
 		var n;
+		var item = response[i];
 		if (typeof item === "string") {
 			n = document.createTextNode(item);
 		} else {
@@ -10,8 +17,12 @@ function wrapWithAbbr(node, response) {
 			n.style.borderBottom = "1px dotted";
 		}
 		node.parentElement.insertBefore(n, node);
-	});
-	node.data = response.tail;
+	}
+	if (lastIsString) {
+		node.data = last;
+	} else {
+		node.remove();
+	}
 }
 
 function processNextNode(section, walker) {
