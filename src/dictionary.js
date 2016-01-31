@@ -54,7 +54,8 @@ function isWordTerminator(c) {
 				 c == ')' ||
 				 c == '.' ||
 				 c == '!' ||
-				 c == '?';
+				 c == '?' ||
+				 c == '\'';
 }
 
 // Aho-Corasick search

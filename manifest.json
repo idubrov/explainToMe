@@ -4,7 +4,7 @@
   "name": "ExplainToMe",
   "short_name": "ExplainToMe",
   "description": "Extension to automatically expand acronyms used on certain subreddits (SpaceX, Space, etc) using http://www.decronym.xyz/ API.",
-  "version": "0.1",
+  "version": "0.2",
 
   "background": {
     "scripts": ["src/dictionary.js"],
