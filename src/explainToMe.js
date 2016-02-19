@@ -1,3 +1,16 @@
+	Opentip.styles.tooltip = {
+  fixed: true,
+  hideTriggers:[document, document], 
+	hideOn:["keydown", "click"],
+	borderRadius: 1,
+	borderWidth: 0,
+	shadow: false,
+	group: "tooltip",
+	tipJoint: "top",
+	background: "#202020",
+};
+Opentip.defaultStyle = "tooltip";
+
 function wrapWithAbbr(node, response) {
 	var last = response[response.length - 1];
 	var lastIsString = (typeof last === "string");
@@ -8,13 +21,16 @@ function wrapWithAbbr(node, response) {
 	for (var i = 0; i < end; i++) {
 		var n;
 		var item = response[i];
+		var title;
 		if (typeof item === "string") {
 			n = document.createTextNode(item);
 		} else {
-			n = document.createElement("abbr");
-			n.title = item.title;
+			n = document.createElement("span");
 			n.textContent = item.text;
 			n.style.borderBottom = "1px dotted";
+
+			title = item.title.join("\n\n");
+			new Opentip(n, markdown.toHTML(title), "");
 		}
 		node.parentElement.insertBefore(n, node);
 	}

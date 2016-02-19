@@ -36,7 +36,7 @@ var faviconReporter = {
 
 	jasmineDone: function(suiteInfo) {
 		console.log(this.failed);
-		changeFavicon(this.failed ? '../icons/failed.png' : '../icons/passed.png');
+		changeFavicon(this.failed ? 'icons/failed.png' : 'icons/passed.png');
 	}
 };
 
